@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise RU e Auxílios Estudantis - UFPB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+        }
+        .chart-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .section-title-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.5rem;
+        }
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+        .nav-link {
+            @apply p-2 rounded-full hover:bg-gray-200 transition-colors duration-200;
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800 pt-20"> <!-- Added padding-top for fixed header -->
+
+    <!-- Fixed Header -->
+    <nav class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-sm shadow-md z-50 p-2 px-4 md:px-8 flex justify-between items-center">
+        <div class="flex items-center">
+            <img src="https://www.ufpb.br/ufpb/menu/institucional/apresentacao/brasao-ufpb/brasao-colorido-com-selo-70-anos.png" alt="Logo UFPB" class="h-12">
+        </div>
+        <div class="flex items-center space-x-2 md:space-x-4">
+            <a href="#diagnostico-ru" title="Diagnóstico RU" class="nav-link">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            </a>
+            <a href="#simulador" title="Simulador de Subsídios" class="nav-link">
+                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" /></svg>
+            </a>
+            <a href="#cenario-nacional" title="Cenário Nacional" class="nav-link">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2h1a2 2 0 002-2v-1a2 2 0 012-2h1.945M7.881 4.042A9.013 9.013 0 003 11v1.945M16.119 4.042A9.013 9.013 0 0121 11v1.945" /></svg>
+            </a>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-4 md:p-8">
+        <!-- Header -->
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-blue-900">Análise Estratégica: RU e Auxílios Estudantis</h1>
+            <p class="text-lg text-gray-600 mt-2">Um Panorama da Assistência Estudantil na UFPB (2020-2025)</p>
+        </header>
+
+        <main class="space-y-16">
+
+            <!-- Seção 1: Diagnóstico do Restaurante Universitário (RU) -->
+            <section id="diagnostico-ru">
+                <div class="flex items-center mb-8">
+                    <div class="section-title-icon bg-blue-100 text-blue-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+                    </div>
+                    <h2 class="text-3xl font-bold ml-4 text-gray-800">1. Diagnóstico do Restaurante Universitário (RU)</h2>
+                </div>
+                 <div class="text-sm text-gray-500 mb-8 text-center">
+                    <p><span class="font-semibold">Fontes dos Dados:</span> Contratos do RU (SIPAC 2025) e Uso do RU (SIGAA - Módulo Assistência Estudantil 2024).</p>
+                </div>
+
+                <!-- Cards de Resumo da Demanda -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <div class="card p-4 text-center">
+                        <h4 class="text-sm font-semibold text-gray-500 uppercase">Demanda Anual Total</h4>
+                        <p class="text-3xl font-extrabold text-blue-900">932.051</p>
+                    </div>
+                    <div class="card p-4 text-center">
+                        <h4 class="text-sm font-semibold text-gray-500 uppercase">Total Almoço</h4>
+                        <p class="text-3xl font-extrabold text-blue-600">520.263</p>
+                    </div>
+                    <div class="card p-4 text-center">
+                        <h4 class="text-sm font-semibold text-gray-500 uppercase">Total Jantar</h4>
+                        <p class="text-3xl font-extrabold text-green-600">337.817</p>
+                    </div>
+                     <div class="card p-4 text-center">
+                        <h4 class="text-sm font-semibold text-gray-500 uppercase">Total Café da Manhã</h4>
+                        <p class="text-3xl font-extrabold text-red-600">73.971</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                    <!-- Análise da Demanda Anual -->
+                    <div class="card p-6 lg:col-span-3">
+                        <h3 class="text-xl font-bold mb-4">Demanda de Refeições por Campus (2024)</h3>
+                        <p class="text-sm text-gray-600 mb-4">O gráfico de barras empilhadas evidencia a concentração da demanda no campus de João Pessoa, que responde pela maior parte do consumo em todas as refeições.</p>
+                        <div class="chart-container">
+                            <canvas id="demandaChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Análise de Custos e Utilização -->
+                    <div class="lg:col-span-2 space-y-8">
+                        <div class="card p-6">
+                            <h3 class="text-xl font-bold mb-4">Custos de Aquisição por Refeição (2025)</h3>
+                             <div class="overflow-x-auto">
+                                <table class="min-w-full text-sm">
+                                    <thead class="bg-gray-100">
+                                        <tr>
+                                            <th class="px-3 py-2 text-left font-semibold text-gray-600">Campus</th>
+                                            <th class="px-3 py-2 text-center font-semibold text-gray-600">Almoço</th>
+                                            <th class="px-3 py-2 text-center font-semibold text-gray-600">Jantar</th>
+                                            <th class="px-3 py-2 text-center font-semibold text-gray-600">Desjejum</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-3 py-2 font-medium">João Pessoa</td>
+                                            <td class="px-3 py-2 text-center">R$ 17,33</td>
+                                            <td class="px-3 py-2 text-center">R$ 17,33</td>
+                                            <td class="px-3 py-2 text-center">R$ 10,32</td>
+                                        </tr>
+                                         <tr>
+                                            <td class="px-3 py-2 font-medium">Areia</td>
+                                            <td class="px-3 py-2 text-center">R$ 15,00</td>
+                                            <td class="px-3 py-2 text-center">R$ 14,00</td>
+                                            <td class="px-3 py-2 text-center">R$ 7,24</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-3 py-2 font-medium">Bananeiras</td>
+                                            <td class="px-3 py-2 text-center">R$ 15,00</td>
+                                            <td class="px-3 py-2 text-center">R$ 14,00</td>
+                                            <td class="px-3 py-2 text-center">R$ 7,24</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-3 py-2 font-medium">Rio Tinto</td>
+                                            <td class="px-3 py-2 text-center">R$ 15,00</td>
+                                            <td class="px-3 py-2 text-center">R$ 14,00</td>
+                                            <td class="px-3 py-2 text-center text-gray-400">N/A</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="card p-6">
+                            <h3 class="text-xl font-bold mb-4">Taxa de Utilização Contratual</h3>
+                            <p class="text-sm text-gray-600 mb-4">Comparativo entre a demanda anual real e a capacidade máxima contratada.</p>
+                            <div class="space-y-3">
+                                <div class="flex justify-between text-sm">
+                                    <span class="font-medium">Demanda Anual (2024)</span>
+                                    <span class="font-semibold">932.051</span>
+                                </div>
+                                <div class="flex justify-between text-sm">
+                                    <span class="font-medium">Capacidade Contratada (2025)</span>
+                                    <span class="font-semibold">1.799.799</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2.5 my-2">
+                                    <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 51.8%"></div>
+                                </div>
+                                <p class="text-center text-2xl font-bold text-yellow-800">51,8%</p>
+                                <div class="bg-yellow-50 p-3 rounded-lg border border-yellow-200 mt-2">
+                                    <p class="text-sm text-yellow-800">
+                                        <span class="font-bold">Análise:</span> A margem contratual de ~48% é significativa, indicando uma oportunidade de reavaliar as quantidades para otimizar a eficiência orçamentária.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Novo Gráfico de Utilização por Campus -->
+                <div class="card p-6 mt-8">
+                    <h3 class="text-xl font-bold mb-4">Taxa de Utilização por Campus e Refeição (%)</h3>
+                    <p class="text-sm text-gray-600 mb-4">
+                        Comparativo da demanda de 2024 com a capacidade contratada para 2025. Valores acima de 100% indicam que a demanda registrada foi superior à capacidade contratada, sinalizando um ponto de atenção no planejamento.
+                    </p>
+                    <div class="chart-container">
+                        <canvas id="utilizacaoCampusChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção 2: Simulador de Impacto Orçamentário -->
+            <section id="simulador">
+                 <div class="flex items-center mb-8">
+                    <div class="section-title-icon bg-green-100 text-green-700">
+                       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" /></svg>
+                    </div>
+                    <h2 class="text-3xl font-bold ml-4 text-gray-800">2. Simulador de Impacto Orçamentário de Subsídios</h2>
+                </div>
+                
+                <div class="card p-6 mb-8">
+                    <h3 class="text-xl font-bold mb-2">Impacto Anual no Orçamento (R$)</h3>
+                    <p class="text-sm text-gray-600 mb-6">Análise cruzada entre cenários de aumento de demanda e diferentes políticas de subsídio.</p>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200 text-sm">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th scope="col" class="px-4 py-3 text-left font-bold text-gray-600 uppercase tracking-wider">Cenário de Demanda</th>
+                                    <th scope="col" class="px-4 py-3 text-center font-bold text-gray-600 uppercase tracking-wider">Subsídio 50% <br><span class="font-medium normal-case">(Preço Variável)</span></th>
+                                    <th scope="col" class="px-4 py-3 text-center font-bold text-gray-600 uppercase tracking-wider">Subsídio 55% <br><span class="font-medium normal-case">(Preço Variável)</span></th>
+                                    <th scope="col" class="px-4 py-3 text-center font-bold text-gray-600 uppercase tracking-wider">Subsídio 60% <br><span class="font-medium normal-case">(Preço Variável)</span></th>
+                                    <th scope="col" class="px-4 py-3 text-center font-bold text-red-600 uppercase tracking-wider">Subsídio 60% <br><span class="font-medium normal-case">(Preço Fixo R$6,90)</span></th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 font-medium">Cenário 1 (Base)</td>
+                                    <td class="px-4 py-3 text-center">R$ 445.949</td>
+                                    <td class="px-4 py-3 text-center">R$ 509.071</td>
+                                    <td class="px-4 py-3 text-center">R$ 572.192</td>
+                                    <td class="px-4 py-3 text-center text-red-700 font-semibold">R$ 753.242</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 font-medium">Cenário 2 (+30%)</td>
+                                    <td class="px-4 py-3 text-center">R$ 579.734</td>
+                                    <td class="px-4 py-3 text-center">R$ 656.234</td>
+                                    <td class="px-4 py-3 text-center">R$ 732.734</td>
+                                    <td class="px-4 py-3 text-center text-red-700 font-semibold">R$ 912.378</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 font-medium">Cenário 3 (+50%)</td>
+                                    <td class="px-4 py-3 text-center">R$ 668.924</td>
+                                    <td class="px-4 py-3 text-center">R$ 754.343</td>
+                                    <td class="px-4 py-3 text-center">R$ 839.762</td>
+                                    <td class="px-4 py-3 text-center text-red-700 font-semibold">R$ 1.018.469</td>
+                                </tr>
+                                <tr class="hover:bg-gray-50">
+                                    <td class="px-4 py-3 font-medium">Cenário 4 (+100%)</td>
+                                    <td class="px-4 py-3 text-center">R$ 891.899</td>
+                                    <td class="px-4 py-3 text-center">R$ 999.615</td>
+                                    <td class="px-4 py-3 text-center">R$ 1.107.331</td>
+                                    <td class="px-4 py-3 text-center text-red-700 font-semibold">R$ 1.283.696</td>
+                                </tr>
+                                <tr class="bg-red-50 hover:bg-red-100">
+                                    <td class="px-4 py-3 font-bold">Cenário 5 (Uso Máximo)</td>
+                                    <td class="px-4 py-3 text-center font-bold">R$ 6.542.889</td>
+                                    <td class="px-4 py-3 text-center font-bold">R$ 7.215.705</td>
+                                    <td class="px-4 py-3 text-center font-bold">R$ 7.888.520</td>
+                                    <td class="px-4 py-3 text-center text-red-700 font-extrabold">R$ 7.636.913</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="card p-6 bg-blue-50 border border-blue-200">
+                        <h4 class="font-bold text-blue-800">Impacto do Nível de Subsídio</h4>
+                        <p class="text-sm text-blue-700 mt-2">Aumentar o subsídio de 50% para 60% (variável) no cenário base eleva o custo anual em <strong class="text-lg">R$ 126 mil</strong>. O percentual de subsídio é uma alavanca primária de controle de custos.</p>
+                    </div>
+                     <div class="card p-6 bg-yellow-50 border border-yellow-200">
+                        <h4 class="font-bold text-yellow-800">Impacto do Modelo de Preço</h4>
+                        <p class="text-sm text-yellow-700 mt-2">Com 60% de subsídio, o modelo de preço <strong class="text-lg">Fixo</strong> custa <strong class="text-lg">R$ 181 mil</strong> a mais por ano que o modelo <strong class="text-lg">Variável</strong>, mesmo com um preço máximo ao aluno ligeiramente menor.</p>
+                    </div>
+                     <div class="card p-6 bg-red-50 border border-red-200">
+                        <h4 class="font-bold text-red-800">Alerta de Ponto Crítico</h4>
+                        <p class="text-sm text-red-700 mt-2">Um aumento de 50% na demanda com subsídio de 60% e preço <strong class="text-lg">Fixo</strong> já ultrapassa <strong class="text-lg">R$ 1 milhão</strong> de custo, um patamar que o modelo <strong class="text-lg">Variável</strong> só atinge com o dobro da demanda.</p>
+                    </div>
+                </div>
+
+                <!-- Novo Gráfico de Custo Incremental -->
+                <div class="card p-6 mt-8">
+                    <h3 class="text-xl font-bold mb-4">Custo Orçamentário Incremental por Cenário</h3>
+                    <p class="text-sm text-gray-600 mb-4">
+                        Este gráfico mostra o custo <strong>adicional</strong> para o orçamento ao avançar para cenários de maior demanda, tendo como referência o custo do Cenário 1 (Base).
+                    </p>
+                    <div class="chart-container">
+                        <canvas id="incrementalCostChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Seção 3: UFPB no Cenário Nacional de Auxílios -->
+            <section id="cenario-nacional">
+                 <div class="flex items-center mb-8">
+                    <div class="section-title-icon bg-purple-100 text-purple-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2h1a2 2 0 002-2v-1a2 2 0 012-2h1.945M7.881 4.042A9.013 9.013 0 003 11v1.945M16.119 4.042A9.013 9.013 0 0121 11v1.945" /></svg>
+                    </div>
+                    <h2 class="text-3xl font-bold ml-4 text-gray-800">3. UFPB no Cenário Nacional de Auxílios (PNAES)</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                    <div class="card p-6">
+                        <h3 class="text-xl font-bold mb-2">Evolução do Valor Médio do Auxílio</h3>
+                        <p class="text-sm text-gray-600 mb-4">Comparativo anual entre o valor médio pago pela UFPB e a mediana nacional (sem outliers).</p>
+                        <div class="chart-container" style="height: 300px;">
+                            <canvas id="pnaesChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-center space-y-4">
+                        <div class="card p-6 flex items-center justify-around text-center">
+                            <div>
+                                <p class="text-sm font-semibold text-gray-500 uppercase">Valor Médio UFPB (2025)</p>
+                                <p class="text-4xl font-extrabold text-blue-900">R$ 5.843</p>
+                            </div>
+                             <div>
+                                <p class="text-sm font-semibold text-gray-500 uppercase">Mediana Nacional (2025)</p>
+                                <p class="text-4xl font-extrabold text-orange-600">R$ 4.500</p>
+                            </div>
+                        </div>
+                        <div class="card p-6 bg-purple-50 border border-purple-200">
+                            <h4 class="font-bold text-purple-800">Posicionamento Estratégico</h4>
+                            <p class="text-sm text-purple-700 mt-2">A UFPB (4ª com mais favorecidos) concede um auxílio médio (<strong>R$ 5.843</strong>) muito superior ao de universidades com volume similar de estudantes, como a UFRN (<strong>R$ 4.390</strong>) e a UFC (<strong>R$ 2.858</strong>), demonstrando um compromisso maior com o valor do benefício.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card p-6">
+                     <h3 class="text-xl font-bold mb-4">Ranking Nacional de Favorecidos e Valor Médio (2025)</h3>
+                     <p class="text-sm text-gray-600 mb-4">Comparativo entre as universidades com maior número de estudantes favorecidos pelo PNAES.</p>
+                     <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200 text-sm">
+                            <thead class="bg-gray-100">
+                                <tr>
+                                    <th scope="col" class="px-4 py-3 text-center font-bold text-gray-600 uppercase tracking-wider">Pos.</th>
+                                    <th scope="col" class="px-4 py-3 text-left font-bold text-gray-600 uppercase tracking-wider">Universidade</th>
+                                    <th scope="col" class="px-4 py-3 text-center font-bold text-gray-600 uppercase tracking-wider">Nº de Favorecidos</th>
+                                    <th scope="col" class="px-4 py-3 text-center font-bold text-gray-600 uppercase tracking-wider">Valor Médio Pago</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-4 py-3 text-center font-medium">1º</td>
+                                    <td class="px-4 py-3 font-medium">UNIVERSIDADE FEDERAL DE MINAS GERAIS</td>
+                                    <td class="px-4 py-3 text-center">12.818</td>
+                                    <td class="px-4 py-3 text-center">R$ 2.901,76</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 text-center font-medium">2º</td>
+                                    <td class="px-4 py-3 font-medium">UNIVERSIDADE FEDERAL DA BAHIA</td>
+                                    <td class="px-4 py-3 text-center">10.300</td>
+                                    <td class="px-4 py-3 text-center">R$ 4.800,65</td>
+                                </tr>
+                                 <tr>
+                                    <td class="px-4 py-3 text-center font-medium">3º</td>
+                                    <td class="px-4 py-3 font-medium">UNIVERSIDADE FEDERAL RURAL DE PERNAMBUCO</td>
+                                    <td class="px-4 py-3 text-center">9.811</td>
+                                    <td class="px-4 py-3 text-center">R$ 2.378,10</td>
+                                </tr>
+                                <tr class="bg-blue-50 border-l-4 border-blue-500">
+                                    <td class="px-4 py-3 text-center font-extrabold text-blue-800">4º</td>
+                                    <td class="px-4 py-3 font-extrabold text-blue-800">UNIVERSIDADE FEDERAL DA PARAIBA</td>
+                                    <td class="px-4 py-3 text-center font-extrabold text-blue-800">8.933</td>
+                                    <td class="px-4 py-3 text-center font-extrabold text-blue-800">R$ 5.843,00</td>
+                                </tr>
+                                 <tr>
+                                    <td class="px-4 py-3 text-center font-medium">5º</td>
+                                    <td class="px-4 py-3 font-medium">UNIVERSIDADE FEDERAL DE ALAGOAS</td>
+                                    <td class="px-4 py-3 text-center">7.578</td>
+                                    <td class="px-4 py-3 text-center">R$ 2.570,80</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 text-center font-medium">6º</td>
+                                    <td class="px-4 py-3 font-medium">UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE</td>
+                                    <td class="px-4 py-3 text-center">7.335</td>
+                                    <td class="px-4 py-3 text-center">R$ 4.390,41</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3 text-center font-medium">7º</td>
+                                    <td class="px-4 py-3 font-medium">UNIVERSIDADE FEDERAL DO CEARA</td>
+                                    <td class="px-4 py-3 text-center">6.350</td>
+                                    <td class="px-4 py-3 text-center">R$ 2.857,93</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-16 pt-8 border-t">
+            <p class="text-gray-600">Análise de dados para apoio à gestão da PRAPE/UFPB em Setembro de 2025.</p>
+            <p class="text-sm text-gray-500">Coordenação de Informação (Codeinfo, PROPLAN)</p>
+        </footer>
+    </div>
+
+<script>
+    // HELPER FUNCTION
+    const formatCurrency = (value) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL', notation: 'compact' }).format(value);
+
+    // DADOS PARA OS GRÁFICOS
+    // --- Dados para o Gráfico de Demanda do RU ---
+    const demandaData = {
+        labels: ['João Pessoa', 'Areia', 'Bananeiras', 'Rio Tinto/Mamanguape'],
+        datasets: [{
+            label: 'Almoço',
+            data: [292021, 81833, 90440, 55969], 
+            backgroundColor: 'rgba(59, 130, 246, 0.7)',
+            borderColor: 'rgba(59, 130, 246, 1)',
+            borderWidth: 1
+        }, {
+            label: 'Jantar',
+            data: [194784, 55396, 68803, 18834],
+            backgroundColor: 'rgba(16, 185, 129, 0.7)',
+            borderColor: 'rgba(16, 185, 129, 1)',
+            borderWidth: 1
+        }, {
+            label: 'Café da Manhã',
+            data: [23600, 15572, 34799, 0], 
+            backgroundColor: 'rgba(239, 68, 68, 0.7)',
+            borderColor: 'rgba(239, 68, 68, 1)',
+            borderWidth: 1
+        }]
+    };
+
+    // --- Dados para o Gráfico PNAES ---
+    const pnaesData = {
+        labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
+        datasets: [{
+            label: 'Valor Médio UFPB',
+            data: [3592, 4272, 5320, 5605, 5843, 5843],
+            borderColor: 'rgba(79, 70, 229, 1)',
+            backgroundColor: 'rgba(79, 70, 229, 0.1)',
+            fill: true,
+            tension: 0.3,
+            pointBackgroundColor: 'rgba(79, 70, 229, 1)',
+            pointRadius: 5
+        }, {
+            label: 'Mediana Nacional (sem outliers)',
+            data: [3100, 3550, 4100, 4250, 4400, 4500],
+            borderColor: 'rgba(249, 115, 22, 1)',
+            backgroundColor: 'rgba(249, 115, 22, 0.1)',
+            fill: true,
+            tension: 0.3,
+            borderDash: [5, 5],
+            pointBackgroundColor: 'rgba(249, 115, 22, 1)',
+            pointRadius: 5
+        }]
+    };
+
+    // --- Dados para o Gráfico de Utilização por Campus (CORRIGIDO) ---
+    const utilizacaoCampusData = {
+        labels: ['João Pessoa', 'Areia', 'Bananeiras', 'Rio Tinto'],
+        datasets: [{
+            label: 'Almoço',
+            data: [57.6, 74.8, 82.7, 99.9],
+            backgroundColor: 'rgba(59, 130, 246, 0.7)',
+            borderColor: 'rgba(59, 130, 246, 1)',
+            borderWidth: 1
+        }, {
+            label: 'Jantar',
+            data: [78.0, 72.9, 90.5, 67.3],
+            backgroundColor: 'rgba(16, 185, 129, 0.7)',
+            borderColor: 'rgba(16, 185, 129, 1)',
+            borderWidth: 1
+        }, {
+            label: 'Café da Manhã',
+            data: [100.0, 73.5, 164.1, 0],
+            backgroundColor: 'rgba(239, 68, 68, 0.7)',
+            borderColor: 'rgba(239, 68, 68, 1)',
+            borderWidth: 1
+        }]
+    };
+
+     // --- Dados para o Gráfico de Custo Incremental ---
+    const incrementalCostData = {
+        labels: ['Cenário 2 (+30%)', 'Cenário 3 (+50%)', 'Cenário 4 (+100%)'],
+        datasets: [{
+            label: 'Subsídio 50% (Var)',
+            data: [133785, 222975, 445950],
+            backgroundColor: 'rgba(59, 130, 246, 0.7)',
+            borderColor: 'rgba(59, 130, 246, 1)',
+            borderWidth: 1
+        }, {
+            label: 'Subsídio 55% (Var)',
+            data: [147163, 245272, 490544],
+            backgroundColor: 'rgba(16, 185, 129, 0.7)',
+            borderColor: 'rgba(16, 185, 129, 1)',
+            borderWidth: 1
+        }, {
+            label: 'Subsídio 60% (Var)',
+            data: [160542, 267570, 535139],
+            backgroundColor: 'rgba(249, 115, 22, 0.7)',
+            borderColor: 'rgba(249, 115, 22, 1)',
+            borderWidth: 1
+        }, {
+            label: 'Subsídio 60% (Fixo)',
+            data: [159136, 265227, 530454],
+            backgroundColor: 'rgba(239, 68, 68, 0.7)',
+            borderColor: 'rgba(239, 68, 68, 1)',
+            borderWidth: 1
+        }]
+    };
+
+
+    // FUNÇÕES DE RENDERIZAÇÃO
+    window.onload = function() {
+        // --- Renderizar Gráfico de Demanda ---
+        const ctxDemanda = document.getElementById('demandaChart').getContext('2d');
+        new Chart(ctxDemanda, {
+            type: 'bar',
+            data: demandaData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: (context) => `${context.dataset.label}: ${new Intl.NumberFormat('pt-BR').format(context.parsed.y)} refeições`
+                        }
+                    }
+                },
+                scales: {
+                    x: { stacked: true, grid: { display: false } },
+                    y: { stacked: true, beginAtZero: true, ticks: { callback: (value) => new Intl.NumberFormat('pt-BR', { notation: 'compact' }).format(value) } }
+                }
+            }
+        });
+
+        // --- Renderizar Gráfico de Utilização por Campus ---
+        const ctxUtilizacao = document.getElementById('utilizacaoCampusChart').getContext('2d');
+        new Chart(ctxUtilizacao, {
+            type: 'bar',
+            data: utilizacaoCampusData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: { display: false },
+                    tooltip: { callbacks: { label: (context) => `${context.dataset.label}: ${context.parsed.y.toFixed(1)}%` } },
+                    legend: { position: 'top' }
+                },
+                scales: {
+                    y: { beginAtZero: true, max: 180, ticks: { callback: (value) => value + '%' } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+        
+        // --- Renderizar Gráfico de Custo Incremental ---
+        const ctxIncremental = document.getElementById('incrementalCostChart').getContext('2d');
+        new Chart(ctxIncremental, {
+            type: 'bar',
+            data: incrementalCostData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    title: { display: false },
+                    tooltip: { callbacks: { label: (context) => `${context.dataset.label}: ${formatCurrency(context.parsed.y)}` } },
+                    legend: { position: 'top' }
+                },
+                scales: {
+                    y: { beginAtZero: true, ticks: { callback: (value) => formatCurrency(value) } },
+                    x: { grid: { display: false } }
+                }
+            }
+        });
+
+        // --- Renderizar Gráfico PNAES ---
+        const ctxPnaes = document.getElementById('pnaesChart').getContext('2d');
+        new Chart(ctxPnaes, {
+            type: 'line',
+            data: pnaesData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                 plugins: {
+                    legend: { position: 'top' },
+                    tooltip: { callbacks: { label: (context) => `${context.dataset.label}: ${new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(context.parsed.y)}` } }
+                },
+                scales: {
+                    y: { beginAtZero: false, ticks: { callback: (value) => 'R$ ' + new Intl.NumberFormat('pt-BR').format(value) } }
+                }
+            }
+        });
+    };
+</script>
+</body>
+</html>
+
